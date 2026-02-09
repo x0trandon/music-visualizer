@@ -9,3 +9,6 @@ __pycache__/
 
 # Audio files
 audio_files/
+
+# Output videos
+output/
