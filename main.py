@@ -1,6 +1,6 @@
 import sys
 import os
-from audio import load_audio, extract_bass_energy
+from audio import analyze_audio
 from visuals import generate_frames
 from video import encode_video
 
@@ -11,12 +11,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     audio_path = sys.argv[1]
-    y, sr = load_audio(audio_path)
-
-    hop_length = 512
-    fps = sr / hop_length
-
-    bass_energy = extract_bass_energy(y, sr, hop_length=hop_length)
+    bass_energy, fps = analyze_audio(audio_path)
 
     audio_name = os.path.splitext(os.path.basename(audio_path))[0]
     output_path = f"output/{audio_name}_video.mp4"
