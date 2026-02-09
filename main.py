@@ -1,5 +1,5 @@
 import sys
-from audio import load_audio
+from audio import load_audio, extract_bass_energy
 
 
 if __name__ == "__main__":
