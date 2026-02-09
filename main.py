@@ -9,3 +9,7 @@ if __name__ == "__main__":
 
     audio_path = sys.argv[1]
     y, sr = load_audio(audio_path)
+
+    bass_energy = extract_bass_energy(y, sr)
+    print(f"Bass energy frames: {len(bass_energy)}")
+    print(f"First 10 values: {bass_energy[:10]}")
