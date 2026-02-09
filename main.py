@@ -23,3 +23,4 @@ if __name__ == "__main__":
     encode_video(frames, fps, audio_path, output_path)
 
     print(f"Done! Output saved to {output_path}")
+    

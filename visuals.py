@@ -36,4 +36,3 @@ def render_frame(energy, width=1920, height=1080):
     )
 
     return img
-
