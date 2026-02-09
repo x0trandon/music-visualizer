@@ -1,4 +1,6 @@
 import librosa
+import numpy as np
+
 
 def load_audio(file_path):
     y, sr = librosa.load(file_path)
@@ -6,3 +8,17 @@ def load_audio(file_path):
     print(f"Duration: {len(y) / sr:.2f} seconds")
     print(f"Samples: {len(y)}")
     return y, sr
+
+
+def extract_bass_energy(y, sr, hop_length=512):
+    stft = librosa.stft(y, hop_length=hop_length)
+    magnitudes = np.abs(stft)
+
+    freqs = librosa.fft_frequencies(sr=sr, n_fft=2048)
+    bass_mask = freqs <= 150
+
+    bass_energy = magnitudes[bass_mask].mean(axis=0)
+
+    bass_energy = bass_energy / bass_energy.max()
+
+    return bass_energy
