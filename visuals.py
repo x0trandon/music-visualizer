@@ -2,6 +2,18 @@ from PIL import Image, ImageDraw
 import numpy as np
 
 
+def generate_frames(bass_energy):
+    frames = []
+    for i, energy in enumerate(bass_energy):
+        img = render_frame(energy)
+        frames.append(np.array(img))
+
+        if (i + 1) % 100 == 0:
+            print(f"Rendered frame {i + 1}/{len(bass_energy)}")
+
+    return frames
+
+
 def render_frame(energy, width=1920, height=1080):
     img = Image.new("RGB", (width, height), (0, 0, 0))
     draw = ImageDraw.Draw(img)
@@ -25,14 +37,3 @@ def render_frame(energy, width=1920, height=1080):
 
     return img
 
-
-def generate_frames(bass_energy):
-    frames = []
-    for i, energy in enumerate(bass_energy):
-        img = render_frame(energy)
-        frames.append(np.array(img))
-
-        if (i + 1) % 100 == 0:
-            print(f"Rendered frame {i + 1}/{len(bass_energy)}")
-
-    return frames
