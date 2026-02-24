@@ -12,3 +12,6 @@ audio_files/
 
 # Output videos
 output/
+
+# Claude Code local settings
+.claude/settings.local.json
